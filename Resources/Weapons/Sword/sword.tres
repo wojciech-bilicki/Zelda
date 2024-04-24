@@ -1,0 +1,24 @@
+[gd_resource type="Resource" load_steps=5 format=3 uid="uid://c47h36jb8dnxb"]
+
+[ext_resource type="Shape2D" uid="uid://b0krnpciwq2hu" path="res://Resources/Weapons/Sword/sword_collision_shape.tres" id="1_pnsyg"]
+[ext_resource type="Texture2D" uid="uid://dx4h05ntwakd5" path="res://Assets/Sprites/Items/Weapons/Sword2/SpriteInHand.png" id="2_nq655"]
+[ext_resource type="Script" path="res://Scripts/WeaponResource.gd" id="3_rnau6"]
+[ext_resource type="Texture2D" uid="uid://eqodybklw0qj" path="res://Assets/Sprites/Items/Weapons/Sword2/Sprite.png" id="4_yn0c3"]
+
+[resource]
+script = ExtResource("3_rnau6")
+in_hand_texture = ExtResource("2_nq655")
+texture = ExtResource("4_yn0c3")
+collision_shape = ExtResource("1_pnsyg")
+left_attachment_position = Vector2(-13, 4)
+right_attachment_position = Vector2(13, 4)
+front_attachment_position = Vector2(5, 10)
+back_attachment_position = Vector2(-5, -7)
+left_rotation = 90
+right_rotation = -90
+front_rotation = 0
+back_rotation = -180
+left_z_index = 1
+right_z_index = 1
+front_z_index = 1
+back_z_index = 0

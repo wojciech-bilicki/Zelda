@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://c4iaqnrim6ymt"]
+[gd_scene load_steps=35 format=3 uid="uid://c4iaqnrim6ymt"]
 
 [ext_resource type="Texture2D" uid="uid://b64u3rj34lxao" path="res://Assets/Sprites/Actor/Characters/WhiteFighter/SeparateAnim/Idle.png" id="1_5a8s4"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_kd3so"]
@@ -7,10 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dx4h05ntwakd5" path="res://Assets/Sprites/Items/Weapons/Sword2/SpriteInHand.png" id="2_ytrmi"]
 [ext_resource type="Script" path="res://Scripts/AnimationController.gd" id="4_mj0s6"]
 [ext_resource type="Script" path="res://Scripts/CombatSystem.gd" id="5_iu3qh"]
-[ext_resource type="Resource" uid="uid://c47h36jb8dnxb" path="res://Resources/Weapons/Sword/sword.tres" id="7_lkabg"]
-[ext_resource type="Shape2D" uid="uid://b0krnpciwq2hu" path="res://Resources/Weapons/Sword/sword_collision_shape.tres" id="9_jjpqp"]
-[ext_resource type="Script" path="res://Scripts/InventorySystem.gd" id="10_gav1g"]
-[ext_resource type="PackedScene" uid="uid://dnel7fiw16f26" path="res://Scenes/player_ui.tscn" id="11_13git"]
+[ext_resource type="Resource" uid="uid://c47h36jb8dnxb" path="res://Resources/Weapons/sword.tres" id="7_lvrvi"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6sfvy"]
 atlas = ExtResource("2_vgbrv")
@@ -246,9 +243,6 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_i7snr"]
 radius = 7.07107
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_y67o8"]
-radius = 8.0
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_kd3so")
 
@@ -267,7 +261,7 @@ zoom = Vector2(3, 3)
 
 [node name="CombatSystem" type="Node2D" parent="."]
 script = ExtResource("5_iu3qh")
-weapon = ExtResource("7_lkabg")
+weapon = ExtResource("7_lvrvi")
 
 [node name="WeaponSprite" type="Sprite2D" parent="CombatSystem"]
 visible = false
@@ -275,26 +269,5 @@ position = Vector2(-13, 4)
 rotation = 1.5708
 texture = ExtResource("2_ytrmi")
 
-[node name="Area2D" type="Area2D" parent="CombatSystem/WeaponSprite"]
-position = Vector2(-4.00005, -13)
-rotation = -1.5708
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/WeaponSprite/Area2D"]
-position = Vector2(-13.5, 4)
-shape = ExtResource("9_jjpqp")
-
-[node name="Inventory" type="Node" parent="."]
-script = ExtResource("10_gav1g")
-
-[node name="PlayerUI" parent="." instance=ExtResource("11_13git")]
-visible = false
-
-[node name="Area2D" type="Area2D" parent="."]
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_y67o8")
-
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
 [connection signal="attack_animation_finished" from="AnimatedSprite2D" to="CombatSystem" method="_on_animated_sprite_2d_attack_animation_finished"]
-[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

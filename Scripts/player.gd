@@ -4,12 +4,14 @@ extends CharacterBody2D
 const SPEED = 100.0
 
 @onready var animated_sprite_2d = $AnimatedSprite2D as AnimationController
+@onready var inventory = $Inventory
 
 
 func _physics_process(delta):
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	if animated_sprite_2d.animation.contains("attack"):
+		return 
+	
 	var direction = Input.get_vector("left", "right", "up", "down")
 	if direction:
 		velocity = direction * SPEED
@@ -22,3 +24,9 @@ func _physics_process(delta):
 	else: 
 		animated_sprite_2d.play_idle_animation()
 	move_and_slide()
+	
+
+func _on_area_2d_area_entered(area):
+	if area is PickUpItem:
+		inventory.add_item(area.inventory_item, area.stacks)
+		area.queue_free()

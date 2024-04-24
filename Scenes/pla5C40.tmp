@@ -1,0 +1,122 @@
+[gd_scene load_steps=6 format=3 uid="uid://dnel7fiw16f26"]
+
+[ext_resource type="Script" path="res://Scripts/PlayerUI.gd" id="1_c4dqk"]
+[ext_resource type="Texture2D" uid="uid://b5wqsixkothn8" path="res://Assets/Sprites/HUD/Dialog/FacesetBox.png" id="2_fui7q"]
+[ext_resource type="Texture2D" uid="uid://di4u5mnf658in" path="res://Assets/Sprites/HUD/Dialog/DialogueBoxSimple.png" id="2_pm01p"]
+[ext_resource type="FontFile" uid="uid://7u1tnf3p5b4d" path="res://Assets/Fonts/The Wild Breath of Zelda.otf" id="3_is3lv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xy1hn"]
+
+[node name="PlayerUI" type="CanvasLayer"]
+script = ExtResource("1_c4dqk")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.266667, 0.266667, 0.266667, 0.552941)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+material = SubResource("CanvasItemMaterial_xy1hn")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("2_pm01p")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_is3lv")
+theme_override_font_sizes/font_size = 64
+text = "Inventory
+"
+
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/NinePatchRect/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+columns = 3
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("2_fui7q")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("2_fui7q")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="NinePatchRect3" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("2_fui7q")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="NinePatchRect4" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("2_fui7q")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="NinePatchRect5" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("2_fui7q")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
+
+[node name="NinePatchRect6" type="NinePatchRect" parent="MarginContainer/NinePatchRect/MarginContainer/GridContainer"]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+texture = ExtResource("2_fui7q")
+patch_margin_left = 8
+patch_margin_top = 8
+patch_margin_right = 8
+patch_margin_bottom = 8
