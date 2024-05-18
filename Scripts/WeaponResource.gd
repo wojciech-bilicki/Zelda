@@ -3,8 +3,9 @@ extends InventoryItem
 class_name WeaponItem
 
 @export var in_hand_texture: Texture
+@export var side_in_hand_texture: Texture
 @export var collision_shape: RectangleShape2D
-
+@export_enum("Melee", "Ranged", "Magic") var attack_type: String
 
 @export var left_attachment_position: Vector2
 @export var right_attachment_position: Vector2
@@ -20,9 +21,6 @@ class_name WeaponItem
 @export var right_z_index: int
 @export var front_z_index: int
 @export var back_z_index: int
-
-
-
 
 func get_data_for_direction(direction: String):
 	match direction: 

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://b32bjohen0yex"]
+
+[ext_resource type="Script" path="res://Scripts/InventoryItem.gd" id="1_71bnp"]
+[ext_resource type="Shape2D" uid="uid://djbbxc0yfcf65" path="res://Resources/Weapons/Shield/shield_inventory_collision_shape.tres" id="1_op747"]
+[ext_resource type="Texture2D" uid="uid://b60tu5mrer80f" path="res://Assets/Sprites/Items/Weapons/Shield/Shield.png" id="2_glwc8"]
+[ext_resource type="Resource" uid="uid://d1nhq1f6672jg" path="res://Resources/Weapons/Shield/shield.tres" id="3_xp8l7"]
+
+[resource]
+script = ExtResource("1_71bnp")
+slot_type = "Left_Hand"
+ground_collision_shape = ExtResource("1_op747")
+name = "Shield"
+texture = ExtResource("2_glwc8")
+max_stacks = 0
+weapon_item = ExtResource("3_xp8l7")

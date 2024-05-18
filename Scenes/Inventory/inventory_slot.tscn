@@ -1,8 +1,33 @@
-[gd_scene load_steps=4 format=3 uid="uid://ifnu0kjc007o"]
+[gd_scene load_steps=9 format=3 uid="uid://ifnu0kjc007o"]
 
 [ext_resource type="Texture2D" uid="uid://b5wqsixkothn8" path="res://Assets/Sprites/HUD/Dialog/FacesetBox.png" id="1_sirk1"]
 [ext_resource type="Script" path="res://Scripts/Inventory/InventorySlot.gd" id="2_at7jx"]
+[ext_resource type="StyleBox" uid="uid://bo5u65olx2n6o" path="res://Scenes/Inventory/spell_button_normal.stylebox" id="3_leq2d"]
+[ext_resource type="StyleBox" uid="uid://4fw0tp5fsmno" path="res://Scenes/Inventory/spell_button_hover.tres" id="4_6fgiu"]
 [ext_resource type="FontFile" uid="uid://7u1tnf3p5b4d" path="res://Assets/Fonts/The Wild Breath of Zelda.otf" id="4_bfcw8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d7i4b"]
+bg_color = Color(0.6, 0.6, 0.6, 0.14902)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 0.027451, 0.258824, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8re1"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.666667, 0.027451, 0.258824, 1)
+
+[sub_resource type="Theme" id="Theme_f0ksr"]
+Button/styles/hover = ExtResource("4_6fgiu")
+Button/styles/normal = ExtResource("3_leq2d")
+selected/base_type = &"Button"
+selected/styles/hover = SubResource("StyleBoxFlat_d7i4b")
+selected/styles/normal = SubResource("StyleBoxFlat_a8re1")
 
 [node name="InventorySlot" type="VBoxContainer"]
 custom_minimum_size = Vector2(60, 60)
@@ -17,7 +42,21 @@ patch_margin_top = 8
 patch_margin_right = 8
 patch_margin_bottom = 8
 
-[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect"]
+[node name="MenuButton" type="MenuButton" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+button_mask = 3
+item_count = 2
+popup/item_0/text = "Equip"
+popup/item_0/id = 0
+popup/item_1/text = "Drop"
+popup/item_1/id = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="NinePatchRect/MenuButton"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,13 +64,40 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="NinePatchRect/CenterContainer"]
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MenuButton/CenterContainer"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_vertical = 0
 expand_mode = 2
 stretch_mode = 5
+
+[node name="OnClickButton" type="Button" parent="NinePatchRect"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+theme = SubResource("Theme_f0ksr")
+
+[node name="StacksLabel" type="Label" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -22.0
+offset_top = -25.0
+offset_right = -3.0
+offset_bottom = -2.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0.560784, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 3
+theme_override_constants/shadow_offset_y = 3
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 18
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
@@ -41,3 +107,5 @@ theme_override_fonts/font = ExtResource("4_bfcw8")
 theme_override_font_sizes/font_size = 15
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="NinePatchRect/OnClickButton" to="." method="_on_on_click_button_pressed"]

@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="WeaponItem" load_steps=4 format=3 uid="uid://670f13cwerrw"]
+
+[ext_resource type="Texture2D" uid="uid://wdntio46gis8" path="res://Assets/Sprites/Items/Weapons/Axe/SpriteInHand.png" id="1_5fv4p"]
+[ext_resource type="Shape2D" uid="uid://dgntqxhwyu7yl" path="res://Resources/Weapons/Axe/axe_collision_shape.tres" id="1_ejn2j"]
+[ext_resource type="Script" path="res://Scripts/WeaponResource.gd" id="2_rxa1r"]
+
+[resource]
+script = ExtResource("2_rxa1r")
+in_hand_texture = ExtResource("1_5fv4p")
+collision_shape = ExtResource("1_ejn2j")
+left_attachment_position = Vector2(-13, 4)
+right_attachment_position = Vector2(13, 4)
+front_attachment_position = Vector2(5, 10)
+back_attachment_position = Vector2(-5, -7)
+left_rotation = 90
+right_rotation = -90
+front_rotation = 0
+back_rotation = -180
+left_z_index = 1
+right_z_index = 1
+front_z_index = 1
+back_z_index = 0
+slot_type = "NotEquipable"
+name = ""
+max_stacks = 0

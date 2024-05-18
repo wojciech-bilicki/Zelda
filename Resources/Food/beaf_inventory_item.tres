@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=4 format=3 uid="uid://c4on5xpkevcca"]
+
+[ext_resource type="Shape2D" uid="uid://cywedfq6ml2b2" path="res://Resources/Food/beaf_collision_shape.tres" id="1_o0fff"]
+[ext_resource type="Script" path="res://Scripts/InventoryItem.gd" id="1_v5hdn"]
+[ext_resource type="Texture2D" uid="uid://is5mcmvkbjhq" path="res://Assets/Sprites/Items/Food/Beaf.png" id="2_x2fcg"]
+
+[resource]
+script = ExtResource("1_v5hdn")
+ground_collision_shape = ExtResource("1_o0fff")
+name = ""
+texture = ExtResource("2_x2fcg")
+max_stacks = 3

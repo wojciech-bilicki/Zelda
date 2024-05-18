@@ -1,8 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dnel7fiw16f26"]
+[gd_scene load_steps=11 format=3 uid="uid://dnel7fiw16f26"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerUI.gd" id="1_c4dqk"]
 [ext_resource type="Texture2D" uid="uid://di4u5mnf658in" path="res://Assets/Sprites/HUD/Dialog/DialogueBoxSimple.png" id="2_pm01p"]
 [ext_resource type="FontFile" uid="uid://7u1tnf3p5b4d" path="res://Assets/Fonts/The Wild Breath of Zelda.otf" id="3_is3lv"]
+[ext_resource type="PackedScene" uid="uid://ifnu0kjc007o" path="res://Scenes/Inventory/inventory_slot.tscn" id="4_fn7hm"]
+[ext_resource type="Texture2D" uid="uid://ctbbst0mf42in" path="res://Assets/Sprites/Items/Scroll/ScrollFire.png" id="5_qg52o"]
+[ext_resource type="Texture2D" uid="uid://b2uou0c2l7yj1" path="res://Assets/Sprites/Items/Scroll/ScrollIce.png" id="6_l6yxl"]
+[ext_resource type="Texture2D" uid="uid://cp6dyf42tbmjd" path="res://Assets/Sprites/Items/Scroll/ScrollPlant.png" id="7_j4hdr"]
+[ext_resource type="Texture2D" uid="uid://dbt3qudj8vapl" path="res://Assets/Sprites/Items/Scroll/ScrollRock.png" id="8_7hmbq"]
+[ext_resource type="Texture2D" uid="uid://vnmmwa76b0w2" path="res://Assets/Sprites/Items/Scroll/ScrollThunder.png" id="9_4rhw4"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_xy1hn"]
 
@@ -49,7 +55,10 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="Label" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer"]
+layout_mode = 2
+
+[node name="InventoryLabel" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
@@ -59,9 +68,78 @@ theme_override_font_sizes/font_size = 64
 text = "Inventory
 "
 
-[node name="GridContainer" type="GridContainer" parent="MarginContainer/NinePatchRect/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 columns = 3
+
+[node name="SpellsUI" type="VBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="SpellsLabel" type="Label" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/SpellsUI"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_is3lv")
+theme_override_font_sizes/font_size = 26
+text = "Spells
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/SpellsUI"]
+layout_mode = 2
+alignment = 1
+
+[node name="FireSpellSlot" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/SpellsUI/HBoxContainer" instance=ExtResource("4_fn7hm")]
+unique_name_in_owner = true
+layout_mode = 2
+single_button_press = true
+starting_texture = ExtResource("5_qg52o")
+starting_label = "Fire"
+
+[node name="IceSpellSlot" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/SpellsUI/HBoxContainer" instance=ExtResource("4_fn7hm")]
+unique_name_in_owner = true
+layout_mode = 2
+single_button_press = true
+starting_texture = ExtResource("6_l6yxl")
+starting_label = "Ice"
+
+[node name="PlantSpellSlot" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/SpellsUI/HBoxContainer" instance=ExtResource("4_fn7hm")]
+unique_name_in_owner = true
+layout_mode = 2
+single_button_press = true
+starting_texture = ExtResource("7_j4hdr")
+starting_label = "Plant"
+
+[node name="RockSpellSlot" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/SpellsUI/HBoxContainer" instance=ExtResource("4_fn7hm")]
+unique_name_in_owner = true
+layout_mode = 2
+single_button_press = true
+starting_texture = ExtResource("8_7hmbq")
+starting_label = "Rock"
+
+[node name="ThunderSpellSlot" parent="MarginContainer/NinePatchRect/MarginContainer/VBoxContainer/SpellsUI/HBoxContainer" instance=ExtResource("4_fn7hm")]
+unique_name_in_owner = true
+layout_mode = 2
+single_button_press = true
+starting_texture = ExtResource("9_4rhw4")
+starting_label = "Thunder"
+
+[node name="CloseButton" type="Button" parent="MarginContainer/NinePatchRect"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -43.0
+offset_top = 15.0
+offset_right = -17.0
+offset_bottom = 68.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 32
+text = "x"
+
+[connection signal="pressed" from="MarginContainer/NinePatchRect/CloseButton" to="." method="_on_close_button_pressed"]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=5 format=3 uid="uid://dyomc83wg3fxx"]
+
+[ext_resource type="Shape2D" uid="uid://dgntqxhwyu7yl" path="res://Resources/Weapons/Axe/axe_collision_shape.tres" id="1_b2ure"]
+[ext_resource type="Script" path="res://Scripts/InventoryItem.gd" id="1_kipd6"]
+[ext_resource type="Texture2D" uid="uid://uyo48ymr5swt" path="res://Assets/Sprites/Items/Weapons/Axe/Sprite.png" id="2_81ec7"]
+[ext_resource type="Resource" uid="uid://670f13cwerrw" path="res://Resources/Weapons/Axe/axe.tres" id="3_rgc6r"]
+
+[resource]
+script = ExtResource("1_kipd6")
+slot_type = "Right_Hand"
+ground_collision_shape = ExtResource("1_b2ure")
+name = "Axe"
+texture = ExtResource("2_81ec7")
+max_stacks = 0
+weapon_item = ExtResource("3_rgc6r")

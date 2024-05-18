@@ -3,8 +3,11 @@ extends CharacterBody2D
 
 const SPEED = 100.0
 
+
+
 @onready var animated_sprite_2d = $AnimatedSprite2D as AnimationController
 @onready var inventory = $Inventory
+@onready var notification_label = $NotificationLabel
 
 
 func _physics_process(delta):
@@ -28,5 +31,11 @@ func _physics_process(delta):
 
 func _on_area_2d_area_entered(area):
 	if area is PickUpItem:
-		inventory.add_item(area.inventory_item, area.stacks)
-		area.queue_free()
+		if !inventory.is_full:
+			inventory.add_item(area.inventory_item, area.stacks)
+			area.queue_free()
+		else:
+			notification_label.show()
+			area.shake()
+			await get_tree().create_timer(1.5).timeout
+			notification_label.hide()
