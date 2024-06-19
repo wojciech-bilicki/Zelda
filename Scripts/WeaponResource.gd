@@ -7,20 +7,28 @@ class_name WeaponItem
 @export var collision_shape: RectangleShape2D
 @export_enum("Melee", "Ranged", "Magic") var attack_type: String
 
+@export_group("Attachment_position")
 @export var left_attachment_position: Vector2
 @export var right_attachment_position: Vector2
 @export var front_attachment_position: Vector2
 @export var back_attachment_position: Vector2
+@export_group("")
 
+@export_group("Rotation")
 @export var left_rotation: int
 @export var right_rotation: int
 @export var front_rotation: int
 @export var back_rotation: int
+@export_group("")
 
+@export_group("Z Index")
 @export var left_z_index: int
 @export var right_z_index: int
 @export var front_z_index: int
 @export var back_z_index: int
+@export_group("")
+
+@export var damage: int
 
 func get_data_for_direction(direction: String):
 	match direction: 

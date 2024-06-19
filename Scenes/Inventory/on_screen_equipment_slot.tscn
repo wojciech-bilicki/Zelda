@@ -61,6 +61,19 @@ size_flags_vertical = 0
 expand_mode = 2
 stretch_mode = 5
 
+[node name="ColorRect" type="ColorRect" parent="RightHandSlot"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 10.0
+offset_right = 20.0
+offset_bottom = 10.0
+grow_horizontal = 2
+pivot_offset = Vector2(20, 40)
+color = Color(0.588235, 0.239216, 0.27451, 0.372549)
+
 [node name="SlotLabel" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

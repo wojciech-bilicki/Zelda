@@ -65,8 +65,9 @@ func on_popup_menu_item_pressed(id:int):
 		
 		
 func _on_on_click_button_pressed():
-	
 	slot_clicked.emit()
 
 func toggle_button_selected_variation(is_selected: bool):
 	on_click_button.theme_type_variation = "selected" if is_selected else ""
+
+

@@ -4,13 +4,14 @@ class_name AnimationController
 
 signal attack_animation_finished
 
+
+
 const MOVEMENT_TO_IDLE = {
 	"back_walk": "back_idle",
 	"front_walk": "front_idle",
 	"right_walk": "right_idle",
 	"left_walk": "left_idle"
 }
-
 
 const DIRECTION_TO_ATTACK_ANIMATION = {
 	"back": "back_attack",
@@ -19,8 +20,19 @@ const DIRECTION_TO_ATTACK_ANIMATION = {
 	"left": "left_attack"
 }
 
+const DIRECTION_TO_ATTACK_VECTOR = {
+	"back": Vector2(0, -1),
+	"front": Vector2(0, 1),
+	"right": Vector2(1, 0),
+	"left": Vector2(-1, 0)
+}
+
 var item_drop_direction = Vector2.DOWN
 var attack_direction = null
+
+var attack_vector: 
+	get:
+		return DIRECTION_TO_ATTACK_VECTOR[attack_direction]
 
 func play_movement_animation(velocity: Vector2):
 	if velocity.x > 0:
@@ -57,3 +69,6 @@ func _on_animation_finished():
 		play(direction + "_idle")
 		attack_direction = null
 		attack_animation_finished.emit()
+
+
+

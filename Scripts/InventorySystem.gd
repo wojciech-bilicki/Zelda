@@ -2,6 +2,9 @@ extends Node
 
 class_name Inventory
 
+signal spell_activated(spell_idx: int)
+
+
 @onready var player_ui = $"../PlayerUI" as PlayerUI
 @onready var animated_sprite_2d = $"../AnimatedSprite2D"
 @onready var on_screen_ui = $"../OnScreenUI" as OnScreenUI
@@ -126,12 +129,15 @@ func eject_item_into_the_ground(idx: int):
 		
 	items[idx] = null	
 	
-	
-
 func spell_slot_clicked(idx: int):
 	selected_spell_index = idx
 	player_ui.set_selected_spell_slot(selected_spell_index)
+	spell_activated.emit(selected_spell_index)
+	
 
 func check_magic_ui_visibility():
 	var should_show_magic_ui = (combat_system.left_weapon != null and combat_system.left_weapon.attack_type == "Magic") or (combat_system.right_weapon != null and combat_system.right_weapon.attack_type == "Magic")
 	player_ui.toggle_spells_ui(should_show_magic_ui) 
+	if should_show_magic_ui == false:
+		on_screen_ui.toggle_spell_slot(false, null)
+	

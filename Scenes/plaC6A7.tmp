@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://c4iaqnrim6ymt"]
+[gd_scene load_steps=40 format=3 uid="uid://c4iaqnrim6ymt"]
 
 [ext_resource type="Texture2D" uid="uid://b64u3rj34lxao" path="res://Assets/Sprites/Actor/Characters/WhiteFighter/SeparateAnim/Idle.png" id="1_5a8s4"]
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_kd3so"]
@@ -6,11 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bf16oc73nvqln" path="res://Assets/Sprites/Actor/Characters/WhiteFighter/SeparateAnim/Attack.png" id="2_vgbrv"]
 [ext_resource type="Script" path="res://Scripts/AnimationController.gd" id="4_mj0s6"]
 [ext_resource type="Script" path="res://Scripts/CombatSystem.gd" id="5_iu3qh"]
-[ext_resource type="Texture2D" uid="uid://c1d2jo3rp2voe" path="res://Assets/Sprites/Actor/Characters/WhiteFighter/SeparateAnim/Dead.png" id="5_rxder"]
+[ext_resource type="Shape2D" uid="uid://dgntqxhwyu7yl" path="res://Resources/Weapons/Axe/axe_collision_shape.tres" id="9_6f3th"]
 [ext_resource type="Script" path="res://Scripts/InventorySystem.gd" id="10_gav1g"]
 [ext_resource type="PackedScene" uid="uid://dnel7fiw16f26" path="res://Scenes/player_ui.tscn" id="11_13git"]
 [ext_resource type="FontFile" uid="uid://7u1tnf3p5b4d" path="res://Assets/Fonts/The Wild Breath of Zelda.otf" id="12_7g7k1"]
-[ext_resource type="PackedScene" uid="uid://bw8ysp652darg" path="res://Scenes/Utils/health_system.tscn" id="12_h4cww"]
 [ext_resource type="Script" path="res://Scripts/spell_system.gd" id="12_qca4f"]
 [ext_resource type="PackedScene" uid="uid://bywqu38yyk5sm" path="res://Scenes/on_screen_ui.tscn" id="13_axpmf"]
 
@@ -147,14 +146,6 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("5_rxder")
-}],
-"loop": true,
-"name": &"dead",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_ngbvl")
 }],
 "loop": false,
@@ -260,13 +251,12 @@ radius = 7.07107
 radius = 8.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 0
 script = ExtResource("1_kd3so")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 z_index = 1
 sprite_frames = SubResource("SpriteFrames_qwao2")
-animation = &"dead"
+animation = &"right_idle"
 script = ExtResource("4_mj0s6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -286,18 +276,15 @@ rotation = 1.5708
 [node name="Area2D" type="Area2D" parent="CombatSystem/RightHandWeaponSprite"]
 position = Vector2(-4.00005, -13)
 rotation = -1.5708
-collision_layer = 16
-collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/RightHandWeaponSprite/Area2D"]
 position = Vector2(-14, 4)
+shape = ExtResource("9_6f3th")
 
 [node name="LeftHandWeaponSprite" type="Sprite2D" parent="CombatSystem"]
 rotation = 1.5708
 
 [node name="Area2D" type="Area2D" parent="CombatSystem/LeftHandWeaponSprite"]
-collision_layer = 16
-collision_mask = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CombatSystem/LeftHandWeaponSprite/Area2D"]
 
@@ -310,7 +297,7 @@ script = ExtResource("10_gav1g")
 visible = false
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 40
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_y67o8")
@@ -337,11 +324,6 @@ vertical_alignment = 1
 [node name="SpellSystem" type="Node" parent="."]
 script = ExtResource("12_qca4f")
 
-[node name="HealthSystem" parent="." instance=ExtResource("12_h4cww")]
-max_health = 100
-
 [connection signal="animation_finished" from="AnimatedSprite2D" to="AnimatedSprite2D" method="_on_animation_finished"]
 [connection signal="attack_animation_finished" from="AnimatedSprite2D" to="CombatSystem" method="_on_animated_sprite_2d_attack_animation_finished"]
-[connection signal="body_entered" from="CombatSystem/RightHandWeaponSprite/Area2D" to="CombatSystem" method="_on_area_2d_body_entered" binds= ["right"]]
-[connection signal="body_entered" from="CombatSystem/LeftHandWeaponSprite/Area2D" to="CombatSystem" method="_on_area_2d_body_entered" unbinds=1]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

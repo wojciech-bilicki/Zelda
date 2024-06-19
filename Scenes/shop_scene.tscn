@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cowda3i2vuqax"]
+
+[ext_resource type="Texture2D" uid="uid://df3bm1ljut7py" path="res://Assets/Sprites/Actor/Characters/OldMan2/Faceset.png" id="1_vvca0"]
+
+[node name="ShopScene" type="Node"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vvca0")
